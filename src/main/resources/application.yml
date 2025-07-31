@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/schema_prueba?serverTimezone=America/Lima&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://localhost:3306/gestion_prestamo?serverTimezone=America/Lima&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: ${password}

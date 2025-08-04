@@ -20,7 +20,6 @@ spring:
         order_inserts: true              # Ordena las inserciones para optimizar el rendimiento del batch
         order_updates: true              # Ordena las actualizaciones para mejorar el uso del batch
 
-
 logging:
   level:
     root: INFO

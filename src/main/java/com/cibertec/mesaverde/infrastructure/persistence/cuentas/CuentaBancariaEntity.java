@@ -20,11 +20,6 @@ public class CuentaBancariaEntity {
     @Column(name = "id_cuenta")
     private Integer idCuenta;
 
-
-    @ManyToOne
-    @JoinColumn(name = "id_cliente", nullable = false)
-    private ClienteEntity cliente;
-
     @ManyToOne
     @JoinColumn(name = "id_tipo_cuenta", nullable = false)
     private TipoCuentaEntity tipoCuenta;
@@ -37,10 +32,6 @@ public class CuentaBancariaEntity {
 
     @Column(name = "saldo", nullable = false, precision = 18, scale = 4)
     private BigDecimal saldo;
-
-    @ManyToOne
-    @JoinColumn(name = "id_moneda", nullable = false)
-    private MonedaEntity moneda;
 
     @Column(name = "fecha_apertura")
     private LocalDateTime fechaApertura;
@@ -61,4 +52,4 @@ public class CuentaBancariaEntity {
     private Integer usuarioActualizacion;
 }
 
-}
+

@@ -23,11 +23,11 @@ public class CuentaBancariaEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private Cliente cliente;
+    private ClienteEntity cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo_cuenta", nullable = false)
-    private TipoCuenta tipoCuenta;
+    private TipoCuentaEntity tipoCuenta;
 
     @Column(name = "numero_cuenta", nullable = false, length = 50)
     private String numeroCuenta;
@@ -40,7 +40,7 @@ public class CuentaBancariaEntity {
 
     @ManyToOne
     @JoinColumn(name = "id_moneda", nullable = false)
-    private Moneda moneda;
+    private MonedaEntity moneda;
 
     @Column(name = "fecha_apertura")
     private LocalDateTime fechaApertura;

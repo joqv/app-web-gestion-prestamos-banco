@@ -1,5 +1,6 @@
 package com.cibertec.mesaverde.infrastructure.persistence.clientes.entity;
 
+import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ClienteEntity {
+public class ClienteEntity extends Auditoria<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

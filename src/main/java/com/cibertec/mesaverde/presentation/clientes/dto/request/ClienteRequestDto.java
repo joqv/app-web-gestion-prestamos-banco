@@ -1,4 +1,4 @@
-package com.cibertec.mesaverde.domain.clientes.model;
+package com.cibertec.mesaverde.presentation.clientes.dto.request;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,9 +7,8 @@ import java.time.LocalDate;
 
 @Data
 @Builder
-public class ClienteModel {
+public class ClienteRequestDto {
 
-    private Long id;
     private String nombre;
     private String apellido;
     private String tipoDocumento;
@@ -18,5 +17,4 @@ public class ClienteModel {
     private String direccion;
     private String telefono;
     private String email;
-    private String estado;
 }

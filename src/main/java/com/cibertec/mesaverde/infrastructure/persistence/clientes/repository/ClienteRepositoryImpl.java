@@ -25,4 +25,14 @@ public class ClienteRepositoryImpl implements ClienteRepository {
                 .map(clienteMapper::toModel)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ClienteModel guardar(ClienteModel clienteModel) {
+
+        ClienteEntity entity = clienteMapper.toEntity(clienteModel);
+
+        ClienteEntity clienteGuardado = clienteRepositoryJpa.save(entity);
+
+        return clienteMapper.toModel(clienteGuardado);
+    }
 }

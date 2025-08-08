@@ -19,6 +19,7 @@ public class TransaccionModel {
     private String tipoTransaccion;
     private BigDecimal monto;
     private MonedaEntity moneda;
+    private String estadoTransaccion;
     private LocalDateTime fechaHoraTransaccion;
     private String descripcion;
     private UsuarioEntity usuarioRegistro;

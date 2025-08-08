@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface TransaccionMapper {
 
     TransaccionModel toModel(TransaccionEntity transaccionEntity);
+
+    TransaccionEntity toEntity(TransaccionModel transaccionModel);
 }

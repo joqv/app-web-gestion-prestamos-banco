@@ -28,7 +28,7 @@ public class ClienteController {
     @PostMapping(value = "/registrar")
     public ClienteResponse registrarCliente(@RequestBody ClienteRequestDto cliente) {
 
-        ClienteModel model = clienteService.guardarCliente(cliente);
+        ClienteModel model = clienteService.procesarRegistroCliente(cliente);
 
         String mensaje = "Usuario registrado con éxito. ID: "+ model.getId();
 

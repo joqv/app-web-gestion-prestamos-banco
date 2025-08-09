@@ -4,6 +4,7 @@ import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.Cliente
 import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CuentaBancariaEntity extends Auditoria<String> {
 
     @Id

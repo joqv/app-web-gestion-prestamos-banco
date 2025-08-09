@@ -2,6 +2,7 @@ package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class MonedaEntity {
 
     @Id

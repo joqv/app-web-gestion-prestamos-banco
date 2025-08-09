@@ -3,6 +3,7 @@ package com.cibertec.mesaverde.domain.prestamos.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import com.cibertec.mesaverde.domain.transacciones.model.MovimientoModel;
 import com.cibertec.mesaverde.infrastructure.persistence.transacciones.entity.MovimientoEntity;
 
 import lombok.Builder;
@@ -13,7 +14,7 @@ import lombok.Data;
 public class CuotasPrestamoModel {
 
     private Long id;
-    private Long idPrestamo;
+    private PrestamoModel idPrestamo;
     private Integer numeroCuota;
     private LocalDateTime fechaVencimiento;
     private BigDecimal montoCapital;
@@ -22,5 +23,5 @@ public class CuotasPrestamoModel {
     private BigDecimal montoPagado;
     private LocalDateTime fechaPago;
     private String estadoCuota;
-    private MovimientoEntity movimientoPago;
+    private MovimientoModel movimientoPago;
 }

@@ -1,13 +1,21 @@
 package com.cibertec.mesaverde.infrastructure.persistence.prestamos.entity;
 import com.cibertec.mesaverde.infrastructure.persistence.transacciones.entity.MovimientoEntity;
+import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
+
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cuotas_prestamo")
-public class CuotasPrestamoEntity {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class CuotasPrestamoEntity extends Auditoria<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +27,7 @@ public class CuotasPrestamoEntity {
     private PrestamoEntity prestamo;
 
     @Column(name = "numero_cuota")
-    private int numeroCuota;
+    private Integer numeroCuota;
 
     @Column(name = "fecha_vencimiento")
     private LocalDateTime fechaVencimiento;

@@ -16,7 +16,7 @@ public class MovimientoModel {
     private TransaccionModel transaccion;
     private CuentaBancariaModel cuenta;
     private String tipoMovimiento;
-    private BigDecimal monto;
+    private BigDecimal montoMovimiento;
     private MonedaModel moneda;
     private BigDecimal saldoAntes;
     private BigDecimal saldoDespues;

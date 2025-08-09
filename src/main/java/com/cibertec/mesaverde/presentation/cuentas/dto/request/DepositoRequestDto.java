@@ -11,7 +11,7 @@ public class DepositoRequestDto {
 
     private String numeroCuentaDestino;
     private BigDecimal monto;
-    private String codigoMoneda;
+    private Long idMoneda;
     private String descripcion;
     //private Long idUsuarioRegistro;
 }

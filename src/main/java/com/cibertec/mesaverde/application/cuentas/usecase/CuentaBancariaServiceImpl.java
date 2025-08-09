@@ -28,6 +28,11 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
     @Transactional
     public TransaccionModel procesarDeposito(DepositoRequestDto requestDto) {
 
+        System.out.println("numero cuenta dto:"+ requestDto.getNumeroCuentaDestino());
+
+        System.out.println("monto del requestDto: " + requestDto.getMonto()); // <-- Agrega esta línea
+        System.out.println("descripcion del requestDto: " + requestDto.getDescripcion()); // <-- Y esta también para depurar
+
         CuentaBancariaModel cuentaDestino = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaDestino());
 
         TransaccionModel transaccion = TransaccionModel.builder()
@@ -50,7 +55,8 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
                 .transaccion(transaccion)
                 .cuenta(cuentaDestino)
                 .tipoMovimiento("DEBITO")
-                .monto(requestDto.getMonto())
+                .montoMovimiento(requestDto.getMonto())
+                .moneda(cuentaDestino.getMoneda())
                 .saldoAntes(saldoAntes)
                 .saldoDespues(cuentaDestino.getSaldo())
                 .fechaHoraMovimiento(LocalDateTime.now())

@@ -4,12 +4,20 @@ import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.CuentaBa
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.prestamos.entity.PrestamoEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "movimientos")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MovimientoEntity {
 
     @Id

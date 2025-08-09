@@ -1,11 +1,19 @@
 package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "monedas")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class MonedaEntity {
 
     @Id

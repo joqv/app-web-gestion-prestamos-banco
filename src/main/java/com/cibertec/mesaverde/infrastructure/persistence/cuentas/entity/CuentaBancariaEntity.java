@@ -3,12 +3,20 @@ package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
 import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cuentas_bancarias")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CuentaBancariaEntity extends Auditoria<String> {
 
     @Id

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 public interface CuentaBancariaRepositoryJpa extends JpaRepository<CuentaBancariaEntity, Long> {
 
     @Query("""
-            select * from CuentaBancariaEntity cb where cb.id = :numero
+            select cb from CuentaBancariaEntity cb where cb.numeroCuenta = :numero
             """)
     CuentaBancariaEntity getCuentaBancariaInterna(@Param("numero") String numero);
 }

@@ -17,10 +17,10 @@ public class CuentaBancariaModel {
     private Long id;
     private ClienteEntity cliente;
     private TipoCuentaEntity tipoCuenta;
-    private MonedaEntity moneda;
+    private MonedaModel moneda;
     private String numeroCuenta;
     private String numeroCciInterbancario;
     private BigDecimal saldo;
-    //private LocalDateTime fechaApertura;
-    //private String estadoCuenta;
+    private LocalDateTime fechaApertura;
+    private String estadoCuenta;
 }

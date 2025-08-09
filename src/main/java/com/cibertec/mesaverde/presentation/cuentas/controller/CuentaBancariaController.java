@@ -6,6 +6,7 @@ import com.cibertec.mesaverde.presentation.cuentas.dto.request.DepositoRequestDt
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.DepositoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class CuentaBancariaController {
     private final CuentaBancariaService cuentaBancariaService;
 
     @PostMapping(value = "/deposito")
-    public DepositoResponse realizarDeposito(DepositoRequestDto requestDto) {
+    public DepositoResponse realizarDeposito(@RequestBody DepositoRequestDto requestDto) {
 
         TransaccionModel transaccion = cuentaBancariaService.procesarDeposito(requestDto);
 

@@ -3,14 +3,22 @@ package com.cibertec.mesaverde.infrastructure.persistence.prestamos.entity;
 import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.CuentaBancariaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
+import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
+
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "prestamos")
-public class PrestamoEntity {
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class PrestamoEntity extends Auditoria<String>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,8 +30,8 @@ public class PrestamoEntity {
     private ClienteEntity cliente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_cuenta_deseembolso")
-    private CuentaBancariaEntity cuentaDeseembolso;
+    @JoinColumn(name = "id_cuenta_desembolso")
+    private CuentaBancariaEntity cuentaDesembolso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_moneda")
@@ -41,7 +49,7 @@ public class PrestamoEntity {
     @Column(name = "fecha_inicio")
     private LocalDate fechaInicio;
 
-    @Column(name = "fecha_fin_estamada")
+    @Column(name = "fecha_fin_estimada")
     private LocalDate fechaFinEstimada;
 
     @Column(name = "monto_cuota_mensual")

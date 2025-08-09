@@ -2,12 +2,23 @@ package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cuentas_bancarias")
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CuentaBancariaEntity {
 
     @Id

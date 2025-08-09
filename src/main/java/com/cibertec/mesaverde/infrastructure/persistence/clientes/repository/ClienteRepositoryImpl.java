@@ -27,7 +27,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     }
 
     @Override
-    public ClienteModel guardar(ClienteModel clienteModel) {
+    public ClienteModel guardarCliente(ClienteModel clienteModel) {
 
         ClienteEntity entity = clienteMapper.toEntity(clienteModel);
 

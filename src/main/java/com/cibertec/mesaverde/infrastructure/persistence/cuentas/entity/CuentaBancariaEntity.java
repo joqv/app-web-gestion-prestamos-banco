@@ -1,6 +1,7 @@
 package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
+import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,13 +14,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cuentas_bancarias")
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class CuentaBancariaEntity {
+public class CuentaBancariaEntity extends Auditoria<String> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

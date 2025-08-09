@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "monedas")
-
 @Getter
 @Setter
 @AllArgsConstructor

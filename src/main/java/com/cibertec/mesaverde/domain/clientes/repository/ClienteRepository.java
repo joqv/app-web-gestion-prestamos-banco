@@ -9,5 +9,5 @@ public interface ClienteRepository {
 
     List<ClienteModel> findAllClientes();
 
-    ClienteModel guardar(ClienteModel clienteModel);
+    ClienteModel guardarCliente(ClienteModel clienteModel);
 }

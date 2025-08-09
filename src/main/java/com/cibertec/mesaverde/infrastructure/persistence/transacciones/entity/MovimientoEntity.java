@@ -6,6 +6,7 @@ import com.cibertec.mesaverde.infrastructure.persistence.prestamos.entity.Presta
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "movimientos")
@@ -41,7 +42,7 @@ public class MovimientoEntity {
     private BigDecimal saldoDespuesMovimiento;
 
     @Column(name = "fecha_hora_movimiento")
-    private String fechaHoraMovimiento;
+    private LocalDateTime fechaHoraMovimiento;
 
     @Column(name = "descripcion_movimiento")
     private String descripcionMovimiento;

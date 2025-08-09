@@ -23,7 +23,7 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     @Transactional
-    public ClienteModel guardarCliente(ClienteRequestDto cliente) {
+    public ClienteModel procesarRegistroCliente(ClienteRequestDto cliente) {
 
         ClienteModel model = ClienteModel.builder()
                 .nombre(cliente.getNombre())
@@ -37,6 +37,6 @@ public class ClienteServiceImpl implements ClienteService {
                 .estado("ACTIVO")
                 .build();
 
-        return clienteRepository.guardar(model);
+        return clienteRepository.guardarCliente(model);
     }
 }

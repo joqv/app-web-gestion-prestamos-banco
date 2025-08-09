@@ -13,5 +13,5 @@ public class DepositoRequestDto {
     private BigDecimal monto;
     private String codigoMoneda;
     private String descripcion;
-    private Long idUsuarioRegistro;
+    //private Long idUsuarioRegistro;
 }

@@ -9,5 +9,5 @@ public interface ClienteService {
 
     List<ClienteModel> listarClientes();
 
-    ClienteModel guardarCliente(ClienteRequestDto dto);
+    ClienteModel procesarRegistroCliente(ClienteRequestDto dto);
 }

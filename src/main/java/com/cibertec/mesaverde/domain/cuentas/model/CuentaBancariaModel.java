@@ -1,5 +1,6 @@
 package com.cibertec.mesaverde.domain.cuentas.model;
 
+import com.cibertec.mesaverde.domain.clientes.model.ClienteModel;
 import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.TipoCuentaEntity;
@@ -15,8 +16,8 @@ import java.time.LocalDateTime;
 public class CuentaBancariaModel {
 
     private Long id;
-    private ClienteEntity cliente;
-    private TipoCuentaEntity tipoCuenta;
+    private ClienteModel cliente;
+    private TipoCuentaModel tipoCuenta;
     private MonedaModel moneda;
     private String numeroCuenta;
     private String numeroCciInterbancario;

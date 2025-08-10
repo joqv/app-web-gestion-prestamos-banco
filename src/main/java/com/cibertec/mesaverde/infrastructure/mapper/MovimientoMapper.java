@@ -2,6 +2,7 @@ package com.cibertec.mesaverde.infrastructure.mapper;
 
 import com.cibertec.mesaverde.domain.transacciones.model.MovimientoModel;
 import com.cibertec.mesaverde.infrastructure.persistence.transacciones.entity.MovimientoEntity;
+import com.cibertec.mesaverde.presentation.transacciones.dto.response.ResponseMovimiento;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
@@ -20,4 +21,10 @@ public interface MovimientoMapper {
     @Mapping(source = "fechaHoraMovimiento", target = "fechaHoraMovimiento")
     @Mapping(source = "descripcion", target = "descripcionMovimiento")
     MovimientoEntity toEntity(MovimientoModel movimientoModel);
+
+
+    @Mapping(source = "fechaHoraMovimiento", target = "fecha")
+    @Mapping(source = "cuenta", target = "origen")
+    @Mapping(source = "montoMovimiento", target = "monto")
+    ResponseMovimiento toResponseMovimiento(MovimientoModel movimientoModel);
 }

@@ -1,9 +1,17 @@
 package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Table(name = "tipo_cuentas")
+@Table(name = "tipo_cuenta")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class TipoCuentaEntity {
 
     @Id
@@ -14,6 +22,6 @@ public class TipoCuentaEntity {
     @Column(name = "nombre_tipo")
     private String nombreTipo;
 
-    @Column(name = "apellido")
+    @Column(name = "descripcion")
     private String descripcion;
 }

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "cuotas_prestamo")
@@ -30,7 +30,7 @@ public class CuotasPrestamoEntity extends Auditoria<String> {
     private Integer numeroCuota;
 
     @Column(name = "fecha_vencimiento")
-    private LocalDateTime fechaVencimiento;
+    private LocalDate fechaVencimiento;
 
     @Column(name = "monto_capital")
     private BigDecimal montoCapital;
@@ -45,7 +45,7 @@ public class CuotasPrestamoEntity extends Auditoria<String> {
     private BigDecimal montoPagado;
 
     @Column(name = "fecha_pago")
-    private LocalDateTime fechaPago;
+    private LocalDate fechaPago;
 
     @Column(name = "estado_cuota")
     private String estadoCuota;

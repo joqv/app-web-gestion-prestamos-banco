@@ -4,14 +4,18 @@ import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.Cliente
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.TipoCuentaEntity;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class CuentaBancariaModel {
 
     private Long id;

@@ -1,30 +1,24 @@
-package com.cibertec.mesaverde.domain.prestamos.model;
+package com.cibertec.mesaverde.presentation.prestamos.dto.response;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import com.cibertec.mesaverde.domain.transacciones.model.MovimientoModel;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CuotasPrestamoModel {
+public class CuotasPrestamoResponseDto {
 
     private Long id;
-    private PrestamoModel prestamo;
+
     private Integer numeroCuota;
     private LocalDate fechaVencimiento;
+
     private BigDecimal montoCapital;
     private BigDecimal montoInteres;
     private BigDecimal montoTotalCuota;
+
     private BigDecimal montoPagado;
     private LocalDate fechaPago;
+
     private String estadoCuota;
-    private MovimientoModel movimientoPago;
 }

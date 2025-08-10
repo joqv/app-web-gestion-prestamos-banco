@@ -10,6 +10,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "prestamos")
@@ -44,7 +45,7 @@ public class PrestamoEntity extends Auditoria<String>{
     private BigDecimal tasaInteres;
 
     @Column(name = "plazo_meses")
-    private int plazoMeses;
+    private Integer plazoMeses;
 
     @Column(name = "fecha_inicio")
     private LocalDate fechaInicio;
@@ -60,4 +61,7 @@ public class PrestamoEntity extends Auditoria<String>{
 
     @Column(name = "estado_prestamo")
     private String estadoPrestamo;
+
+    @OneToMany(mappedBy = "prestamo")
+    private List<CuotasPrestamoEntity> cuotas;
 }

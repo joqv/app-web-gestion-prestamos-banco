@@ -1,8 +1,12 @@
 package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "tipo_cuentas")
 public class TipoCuentaEntity {
 

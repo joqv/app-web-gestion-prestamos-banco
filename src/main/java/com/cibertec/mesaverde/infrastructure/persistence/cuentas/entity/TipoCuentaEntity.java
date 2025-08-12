@@ -14,6 +14,6 @@ public class TipoCuentaEntity {
     @Column(name = "nombre_tipo")
     private String nombreTipo;
 
-    @Column(name = "apellido")
+    @Column(name = "descripcion")
     private String descripcion;
 }

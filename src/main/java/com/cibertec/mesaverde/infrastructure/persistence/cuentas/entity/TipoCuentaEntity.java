@@ -1,38 +1,19 @@
 package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tipo_cuenta")
-@Getter
-@Setter
-@ToString
+@Table(name = "tipo_cuentas")
 public class TipoCuentaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_tipo_cuenta")
-    private Integer idTipoCuenta;
+    private Long id;
 
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
+    @Column(name = "nombre_tipo")
+    private String nombreTipo;
 
-    @Column(name = "descripcion", length = 255)
+    @Column(name = "apellido")
     private String descripcion;
-
-    @Column(name = "fecha_creacion")
-    private LocalDateTime fechaCreacion;
-
-    @Column(name = "fecha_actualizacion")
-    private LocalDateTime fechaActualizacion;
-
-    @Column(name = "usuario_creacion")
-    private Integer usuarioCreacion;
-
-    @Column(name = "usuario_actualizacion")
-    private Integer usuarioActualizacion;
 }

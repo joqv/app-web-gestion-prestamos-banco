@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tipo_cuenta")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Table(name = "tipo_cuenta")
 public class TipoCuentaEntity {
 
     @Id

@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class ResponseMovimiento {
 
-    LocalDateTime fecha;
-    CuentaBancariaModel origen;
-    BigDecimal monto;
+    private LocalDateTime fecha;
+    private CuentaBancariaModel origen;
+    private BigDecimal monto;
 }

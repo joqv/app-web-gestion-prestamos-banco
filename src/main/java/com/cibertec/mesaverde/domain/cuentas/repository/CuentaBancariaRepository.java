@@ -7,5 +7,7 @@ public interface CuentaBancariaRepository {
 
     CuentaBancariaModel obtenerCuentaBancaria(String numero);
 
+    CuentaBancariaModel guardarCuentaBancaria(CuentaBancariaModel cuentaBancariaModel);
+
     CuentaBancariaModel guardarDeposito(CuentaBancariaModel cuentaBancariaModel);
 }

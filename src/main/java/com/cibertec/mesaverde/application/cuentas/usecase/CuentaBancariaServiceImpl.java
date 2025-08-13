@@ -8,6 +8,10 @@ import com.cibertec.mesaverde.domain.transacciones.model.TransaccionModel;
 import com.cibertec.mesaverde.domain.transacciones.repository.MovimientoRepository;
 import com.cibertec.mesaverde.domain.transacciones.repository.TransaccionRepository;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.DepositoRequestDto;
+import com.cibertec.mesaverde.presentation.cuentas.dto.request.NuevaTransferenciaRequestDto;
+import com.cibertec.mesaverde.presentation.cuentas.dto.request.TransferenciaRequestDto;
+import com.cibertec.mesaverde.presentation.cuentas.dto.response.NuevaTransferenciaResponse;
+import com.cibertec.mesaverde.presentation.cuentas.dto.response.TransferenciaResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,5 +70,93 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
         movimientoRepository.guardarMovimiento(movimiento);
 
         return transaccion;
+    }
+
+    @Override
+    public NuevaTransferenciaResponse nuevaTransferencia(NuevaTransferenciaRequestDto requestDto) {
+
+        System.out.println("Num cuenta:" + requestDto.getNumeroCuentaDestino());
+
+        CuentaBancariaModel cuentaDestino = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaDestino());
+
+        return NuevaTransferenciaResponse.builder()
+                .nombreCompleto(cuentaDestino.getCliente().getNombre() + " " + cuentaDestino.getCliente().getApellido())
+                .numeroCuenta(cuentaDestino.getNumeroCuenta())
+                .moneda(cuentaDestino.getMoneda().getNombre())
+                .saldoActual(BigDecimal.valueOf(45000))
+                .build();
+    }
+
+    @Override
+    @Transactional
+    public TransferenciaResponse procesarTransferencia(TransferenciaRequestDto requestDto) {
+
+        System.out.println("Num cuenta:" + requestDto.getNumeroCuentaDestino());
+
+        CuentaBancariaModel cuentaOrigen = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaOrigen());
+        CuentaBancariaModel cuentaDestino = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaDestino());
+
+        // Transaccion
+
+        TransaccionModel transaccion = TransaccionModel.builder()
+                .monto(requestDto.getMonto())
+                .tipoTransaccion("TRANSFERENCIA_INTERNA")
+                .moneda(cuentaOrigen.getMoneda())
+                .fechaHoraTransaccion(LocalDateTime.now())
+                .estadoTransaccion("COMPLETADA")
+                .descripcion(requestDto.getDescripcion() != null ? requestDto.getDescripcion() : "Transferencia interna.")
+                .cuentaOrigen(cuentaOrigen)
+                .cuentaDestino(cuentaDestino)
+                .build();
+
+        transaccion = transaccionRepository.guardarTransaccion(transaccion);
+
+        // Debito
+
+        BigDecimal saldoOrigenAntes = cuentaOrigen.getSaldo();
+        cuentaOrigen.setSaldo(saldoOrigenAntes.subtract(requestDto.getMonto()).setScale(4, RoundingMode.HALF_UP));
+        cuentaBancariaRepository.guardarCuentaBancaria(cuentaOrigen);
+
+        MovimientoModel movimientoDebito = MovimientoModel.builder()
+                .transaccion(transaccion)
+                .cuenta(cuentaOrigen)
+                .tipoMovimiento("DEBITO")
+                .montoMovimiento(requestDto.getMonto())
+                .moneda(cuentaOrigen.getMoneda())
+                .saldoAntes(saldoOrigenAntes)
+                .saldoDespues(cuentaOrigen.getSaldo())
+                .fechaHoraMovimiento(LocalDateTime.now())
+                .descripcion("Debito por transferencia a "+ cuentaDestino.getNumeroCuenta())
+                .build();
+        movimientoRepository.guardarMovimiento(movimientoDebito);
+
+        // Credito
+
+        BigDecimal saldoDestinoAntes = cuentaDestino.getSaldo();
+        cuentaDestino.setSaldo(saldoDestinoAntes.add(requestDto.getMonto()).setScale(4, RoundingMode.HALF_UP));
+        cuentaBancariaRepository.guardarCuentaBancaria(cuentaDestino);
+
+        MovimientoModel movimientoCredito = MovimientoModel.builder()
+                .transaccion(transaccion)
+                .cuenta(cuentaDestino)
+                .tipoMovimiento("CREDITO")
+                .montoMovimiento(requestDto.getMonto())
+                .moneda(cuentaDestino.getMoneda())
+                .saldoAntes(saldoDestinoAntes)
+                .saldoDespues(cuentaDestino.getSaldo())
+                .fechaHoraMovimiento(LocalDateTime.now())
+                .descripcion("Credito por transferencia de " + cuentaOrigen.getNumeroCuenta())
+                .build();
+        movimientoRepository.guardarMovimiento(movimientoCredito);
+
+        return TransferenciaResponse.builder()
+                .numeroCuentaOrigen(transaccion.getCuentaOrigen())
+                .numeroCuentaDestino(transaccion.getCuentaDestino())
+                .nombreCompleto(transaccion.getCuentaDestino().getCliente().getNombre() + " " + transaccion.getCuentaDestino().getCliente().getApellido())
+                .monto(transaccion.getMonto())
+                .descripcion(transaccion.getDescripcion())
+                .numeroTransaccion(transaccion.getId())
+                .fechaHora(transaccion.getFechaHoraTransaccion())
+                .build();
     }
 }

@@ -31,8 +31,14 @@ public class CuentaBancariaRepositoryImpl implements CuentaBancariaRepository {
     public CuentaBancariaModel obtenerCuentaBancaria(String numero) {
 
         CuentaBancariaEntity entity = cuentaBancariaRepositoryJpa.getCuentaBancariaInterna(numero);
-        CuentaBancariaModel model = cuentaBancariaMapper.toModel(entity);
+        return cuentaBancariaMapper.toModel(entity);
+    }
 
-        return model;
+    @Override
+    public CuentaBancariaModel guardarCuentaBancaria(CuentaBancariaModel cuentaBancariaModel) {
+
+        CuentaBancariaEntity entity = cuentaBancariaMapper.toEntity(cuentaBancariaModel);
+        CuentaBancariaEntity entityGuardado = cuentaBancariaRepositoryJpa.save(entity);
+        return cuentaBancariaMapper.toModel(entityGuardado);
     }
 }

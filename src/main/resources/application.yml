@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://localhost:3306/gestion_prestamos?serverTimezone=America/Lima&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: ${password}           #Cambiar a ${password}
+    password: '@Eliagami12'          #Cambiar a ${password}
     hikari:
       maximum-pool-size: 10         # Numero maximo de conexiones en el pool
       minimum-idle: 5               # Minimo de conexiones inactivas
@@ -26,3 +26,9 @@ logging:
     org.hibernate.orm.jdbc.bind: TRACE         # Muestra los valores que se envian a los parametros ?
     org.hibernate.orm.jdbc.extract: TRACE    # Muestra los valores que se extraen desde la BD
     org.hibernate.type.descriptor.sql: TRACE   # Para ver mas detalles de tipos
+
+security:
+  jwt:
+    secret: QulywYuiMZzR90QVVIuIZs9UmBAbDkQQvBmYHlRJtfmJPcfZoa7Hkzv-P9Tvy10f5NvAASEt1NAyS4ZGoWHAEw
+    access-token-expiration: 900000
+    refresh-token-expiration: 900000

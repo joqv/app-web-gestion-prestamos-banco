@@ -36,7 +36,6 @@ public class AuthController {
         );
     }
 
-    /*
     @PostMapping("/refresh")
     public ResponseEntity<LoginResponseDto> refresh(@Valid @RequestBody RefreshTokenRequestDto request) {
         SeguridadModel seguridad = seguridadService.refrescar(request.getRefreshToken());
@@ -47,7 +46,6 @@ public class AuthController {
                 )
         );
     }
-    */
 
 
     private LoginResponseDto buildLoginResponse(String accessToken, String refreshToken) {

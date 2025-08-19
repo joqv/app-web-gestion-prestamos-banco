@@ -82,5 +82,12 @@ public class CuotasPrestamoRepositoryImpl implements CuotasPrestamoRepository {
         }
         return null; // or throw an exception if preferred
     }
+    @Override
+    public List<CuotasPrestamoModel> findByClienteDni(String numeroDocumento) {
+        return cuotasPrestamoRepositoryJpa.findByPrestamoClienteNumeroDocumento(numeroDocumento)
+            .stream()
+            .map(cuotasMapper::toModel)
+            .collect(Collectors.toList());
+    }
 
 }

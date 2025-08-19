@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
+import com.cibertec.mesaverde.domain.clientes.model.ClienteModel;
 import com.cibertec.mesaverde.domain.prestamos.model.CuotasPrestamoModel;
 
 public interface CuotasPrestamoService {
@@ -24,5 +25,8 @@ public interface CuotasPrestamoService {
 
     // Registrar pago de una cuota
     CuotasPrestamoModel registrarPago(Long id, BigDecimal montoPagado);
+
+    // Listar cuotas de un cliente por su dni
+    List<CuotasPrestamoModel> buscarPorClienteDni(String tipoDocumento);
 
 }

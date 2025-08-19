@@ -31,12 +31,7 @@ public class PrestamoRepositoryImpl implements PrestamoRepository {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public PrestamoModel save(PrestamoModel prestamo) {
-        PrestamoEntity entity = prestamoMapper.toEntity(prestamo);
-        PrestamoEntity savedEntity = prestamoRepositoryJpa.save(entity);
-        return prestamoMapper.toModel(savedEntity);
-    }
+
 
     @Override
     public Optional<PrestamoModel> findById(Long id) {
@@ -76,6 +71,13 @@ public class PrestamoRepositoryImpl implements PrestamoRepository {
             return prestamoMapper.toModel(updatedEntity);
         }
         return null; // or throw an exception if preferred
+    }
+
+    @Override
+    public PrestamoModel guardarPrestamo(PrestamoModel prestamo) {
+        PrestamoEntity entity = prestamoMapper.toEntity(prestamo);
+        PrestamoEntity savedEntity = prestamoRepositoryJpa.save(entity);
+        return prestamoMapper.toModel(savedEntity);
     }
 
 

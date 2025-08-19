@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cibertec.mesaverde.domain.clientes.model.ClienteModel;
 import com.cibertec.mesaverde.domain.prestamos.model.CuotasPrestamoModel;
 import com.cibertec.mesaverde.domain.prestamos.repository.CuotasPrestamoRepository;
 import com.cibertec.mesaverde.domain.prestamos.service.CuotasPrestamoService;
@@ -67,5 +68,11 @@ public class CuotasPrestamoServiceImpl implements CuotasPrestamoService {
         return cuotasPrestamoRepository.save(cuota);
 
     }
+
+    @Override
+    public List<CuotasPrestamoModel> buscarPorClienteDni(String numeroDocumento) {
+        return cuotasPrestamoRepository.findByClienteDni(numeroDocumento);
+    }
+
 
 }

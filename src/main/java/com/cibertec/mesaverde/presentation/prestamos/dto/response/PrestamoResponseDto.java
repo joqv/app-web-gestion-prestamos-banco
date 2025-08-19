@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
+import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.CuentaBancariaEntity;
+import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
 import com.cibertec.mesaverde.presentation.clientes.dto.response.ClienteResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.CuentaBancariaResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.MonedaResponse;
@@ -14,9 +17,7 @@ import lombok.Data;
 public class PrestamoResponseDto {
     private Long id;
 
-    private ClienteResponse cliente; // datos básicos del cliente
-    private CuentaBancariaResponse cuentaDesembolso;
-    private MonedaResponse moneda;
+    private CuentaBancariaEntity cuentaDesembolso;
 
     private BigDecimal montoPrincipal;
     private BigDecimal tasaInteres;
@@ -27,8 +28,6 @@ public class PrestamoResponseDto {
 
     private BigDecimal montoCuotaMensual;
     private BigDecimal saldoPendiente;
-
-    private String estadoPrestamo;
 
     private List<CuotasPrestamoResponseDto> cuotas;
 }

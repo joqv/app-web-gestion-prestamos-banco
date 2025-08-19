@@ -12,9 +12,6 @@ public class CuotasPrestamoResponseDto {
 
     private Integer numeroCuota;
     private LocalDate fechaVencimiento;
-
-    private BigDecimal montoCapital;
-    private BigDecimal montoInteres;
     private BigDecimal montoTotalCuota;
 
     private BigDecimal montoPagado;

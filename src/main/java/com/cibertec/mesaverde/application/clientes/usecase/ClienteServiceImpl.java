@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +39,10 @@ public class ClienteServiceImpl implements ClienteService {
                 .build();
 
         return clienteRepository.guardarCliente(model);
+    }
+
+    @Override
+    public Optional<ClienteModel> buscarPorId(Long id) {
+        return clienteRepository.findById(id);
     }
 }

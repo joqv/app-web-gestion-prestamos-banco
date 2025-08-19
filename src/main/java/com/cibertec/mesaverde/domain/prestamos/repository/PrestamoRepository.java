@@ -9,7 +9,7 @@ public interface PrestamoRepository {
     
     List<PrestamoModel> findAllPrestamos();
 
-    PrestamoModel save(PrestamoModel prestamo);
+    PrestamoModel guardarPrestamo(PrestamoModel prestamo);
 
     Optional<PrestamoModel> findById(Long id);
 

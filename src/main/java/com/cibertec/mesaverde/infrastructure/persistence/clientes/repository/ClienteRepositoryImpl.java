@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -34,5 +35,12 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         ClienteEntity clienteGuardado = clienteRepositoryJpa.save(entity);
 
         return clienteMapper.toModel(clienteGuardado);
+    }
+
+    @Override
+    public Optional<ClienteModel> findById(Long id) {
+        return clienteRepositoryJpa.findById(id)
+            .map(clienteMapper::toModel);
+
     }
 }

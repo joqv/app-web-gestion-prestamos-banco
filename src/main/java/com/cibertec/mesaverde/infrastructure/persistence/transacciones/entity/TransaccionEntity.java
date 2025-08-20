@@ -1,6 +1,6 @@
 package com.cibertec.mesaverde.infrastructure.persistence.transacciones.entity;
 
-import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.BancoEntity;
+import com.cibertec.mesaverde.infrastructure.persistence.bancos.entity.BancoEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.CuentaBancariaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.MonedaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.usuarios.entity.UsuarioEntity;

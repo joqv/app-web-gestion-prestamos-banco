@@ -1,27 +1,23 @@
-package com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity;
+package com.cibertec.mesaverde.infrastructure.persistence.bancos.entity;
 
+import com.cibertec.mesaverde.infrastructure.shared.Auditoria;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
+@Table(name = "bancos")
 @Getter
 @Setter
-@Table(name = "bancos")
-public class BancoEntity {
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class BancoEntity extends Auditoria<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_banco")
     private Long id;
-
     @Column(name = "nombre_banco")
     private String nombreBanco;
-
     @Column(name = "codigo_banco")
     private String codigoBanco;
 

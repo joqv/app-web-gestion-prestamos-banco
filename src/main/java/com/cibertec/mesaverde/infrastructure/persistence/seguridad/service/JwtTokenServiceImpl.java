@@ -74,7 +74,7 @@ public class JwtTokenServiceImpl implements TokenService {
         claims.put("name", usuario.getUsername() + " " + usuario.getEmail());
         claims.put("roles", usuario.getRoles()
                 .stream()
-                .map(RolesModel::getDescripcion)
+                .map(RolesModel::getNombreRol)
                 .toList());
         return claims;
     }

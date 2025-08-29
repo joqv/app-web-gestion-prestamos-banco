@@ -10,15 +10,20 @@ import com.cibertec.mesaverde.domain.transacciones.repository.TransaccionReposit
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.DepositoRequestDto;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.NuevaTransferenciaRequestDto;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.TransferenciaRequestDto;
+import com.cibertec.mesaverde.presentation.cuentas.dto.response.CuentasBancariasResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.NuevaTransferenciaResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.TransferenciaResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -79,6 +84,13 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
 
         CuentaBancariaModel cuentaDestino = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaDestino());
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println("Nombre usuario: " + authentication.getName());
+
+        List<CuentaBancariaModel> cuentaOrigenJwt = cuentaBancariaRepository.obtenerCuentasBancariasPorUsuario(authentication.getName());
+
+        //System.out.println("cuentaOrigenJwt " + cuentaOrigenJwt.getNumeroCuenta());
+
         return NuevaTransferenciaResponse.builder()
                 .nombreCompleto(cuentaDestino.getCliente().getNombre() + " " + cuentaDestino.getCliente().getApellido())
                 .numeroCuenta(cuentaDestino.getNumeroCuenta())
@@ -94,6 +106,8 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
         System.out.println("Num cuenta:" + requestDto.getNumeroCuentaDestino());
 
         CuentaBancariaModel cuentaOrigen = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaOrigen());
+
+        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CuentaBancariaModel cuentaDestino = cuentaBancariaRepository.obtenerCuentaBancaria(requestDto.getNumeroCuentaDestino());
 
         // Transaccion
@@ -150,13 +164,40 @@ public class CuentaBancariaServiceImpl implements CuentaBancariaService {
         movimientoRepository.guardarMovimiento(movimientoCredito);
 
         return TransferenciaResponse.builder()
-                .numeroCuentaOrigen(transaccion.getCuentaOrigen())
-                .numeroCuentaDestino(transaccion.getCuentaDestino())
-                .nombreCompleto(transaccion.getCuentaDestino().getCliente().getNombre() + " " + transaccion.getCuentaDestino().getCliente().getApellido())
+                .numeroCuentaOrigen(transaccion.getCuentaOrigen().getNumeroCuenta())
+                .nombreMonedaOrigen(transaccion.getCuentaOrigen().getMoneda().getNombre())
+                .nombreCompletoOrigen(transaccion.getCuentaOrigen().getCliente().getNombre() + " " + transaccion.getCuentaOrigen().getCliente().getApellido())
+                .numeroCuentaDestino(transaccion.getCuentaDestino().getNumeroCuenta())
+                .nombreMonedaDestino(transaccion.getCuentaOrigen().getMoneda().getNombre())
+                .nombreCompletoDestino(transaccion.getCuentaDestino().getCliente().getNombre() + " " + transaccion.getCuentaDestino().getCliente().getApellido())
+                .simboloMoneda(transaccion.getCuentaDestino().getMoneda().getSimbolo())
                 .monto(transaccion.getMonto())
                 .descripcion(transaccion.getDescripcion())
                 .numeroTransaccion(transaccion.getId())
                 .fechaHora(transaccion.getFechaHoraTransaccion())
                 .build();
+    }
+
+    @Override
+    public List<CuentasBancariasResponse> listarCuentasBancariasPorUsuario() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String username = authentication.getName();
+
+        List<CuentaBancariaModel> cuentasUsuarioLogueado = cuentaBancariaRepository.obtenerCuentasBancariasPorUsuario(username);
+
+        List<CuentasBancariasResponse> cuentas = cuentasUsuarioLogueado.stream()
+                .map(cuenta -> CuentasBancariasResponse.builder()
+                        .id(cuenta.getId())
+                        .simboloMoneda(cuenta.getMoneda().getSimbolo())
+                        .numeroCuenta(cuenta.getNumeroCuenta())
+                        .saldo(cuenta.getSaldo())
+                        .build()
+                ).toList();
+
+        System.out.println("Nombre usuario listar cuentas: " + authentication.getName());
+
+        return cuentas;
     }
 }

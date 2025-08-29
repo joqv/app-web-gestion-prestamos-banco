@@ -5,14 +5,14 @@ import com.cibertec.mesaverde.domain.transacciones.model.TransaccionModel;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.DepositoRequestDto;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.NuevaTransferenciaRequestDto;
 import com.cibertec.mesaverde.presentation.cuentas.dto.request.TransferenciaRequestDto;
+import com.cibertec.mesaverde.presentation.cuentas.dto.response.CuentasBancariasResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.DepositoResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.NuevaTransferenciaResponse;
 import com.cibertec.mesaverde.presentation.cuentas.dto.response.TransferenciaResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/v1/cuentas")
@@ -20,6 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class CuentaBancariaController {
 
     private final CuentaBancariaService cuentaBancariaService;
+
+    @GetMapping(value = "/cuentas-bancarias-usuario")
+    public List<CuentasBancariasResponse> listarCuentasBancariasPorUsuario() {
+
+        //String mensaje = "Deposito realizado con extio. Número de transacción:" + transaccion.getId();
+
+        return cuentaBancariaService.listarCuentasBancariasPorUsuario();
+    }
 
     @PostMapping(value = "/deposito")
     public DepositoResponse realizarDeposito(@RequestBody DepositoRequestDto requestDto) {

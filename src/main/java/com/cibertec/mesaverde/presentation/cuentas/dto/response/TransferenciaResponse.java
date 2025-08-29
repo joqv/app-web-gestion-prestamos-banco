@@ -11,9 +11,13 @@ import java.time.LocalDateTime;
 @Builder
 public class TransferenciaResponse {
 
-    private CuentaBancariaModel numeroCuentaOrigen;
-    private CuentaBancariaModel numeroCuentaDestino;
-    private String nombreCompleto;
+    private String numeroCuentaOrigen;
+    private String nombreMonedaOrigen;
+    private String nombreCompletoOrigen;
+    private String numeroCuentaDestino;
+    private String nombreMonedaDestino;
+    private String nombreCompletoDestino;
+    private String simboloMoneda;
     private BigDecimal monto;
     private String descripcion;
     private Long numeroTransaccion;

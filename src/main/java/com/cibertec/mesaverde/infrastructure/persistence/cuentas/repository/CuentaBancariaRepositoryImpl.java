@@ -5,10 +5,14 @@ import com.cibertec.mesaverde.domain.cuentas.model.CuentaBancariaModel;
 import com.cibertec.mesaverde.domain.cuentas.repository.CuentaBancariaRepository;
 import com.cibertec.mesaverde.domain.cuentas.service.CuentaBancariaService;
 import com.cibertec.mesaverde.infrastructure.mapper.CuentaBancariaMapper;
+import com.cibertec.mesaverde.infrastructure.persistence.clientes.entity.ClienteEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.entity.CuentaBancariaEntity;
 import com.cibertec.mesaverde.infrastructure.persistence.cuentas.jpa.CuentaBancariaRepositoryJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,6 +29,14 @@ public class CuentaBancariaRepositoryImpl implements CuentaBancariaRepository {
         CuentaBancariaEntity cuentaGuardada = cuentaBancariaRepositoryJpa.save(entity);
 
         return cuentaBancariaMapper.toModel(cuentaGuardada);
+    }
+
+    @Override
+    public List<CuentaBancariaModel> obtenerCuentasBancariasPorUsuario(String usuario) {
+        List<CuentaBancariaEntity> cuentas = cuentaBancariaRepositoryJpa.getCuentasBancariasPorUsuario(usuario);
+        return cuentas.stream()
+                .map(cuentaBancariaMapper::toModel)
+                .collect(Collectors.toList());
     }
 
     @Override
